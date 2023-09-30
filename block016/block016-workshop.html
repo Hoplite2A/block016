@@ -9,15 +9,15 @@
 <body>
     <div>
         <ul id="names-list"></ul>
-        <input id="user-input">
+        <input id="user-input" value="Patient's First Name" onclick="this.value=''">
         <script>
             let searchName = "";
             document.getElementById("add-name").value = searchName;
         </script>
-        <button id="add-name" onclick="refillAuthorization(searchName)">Add Name</button>
+        <button id="add-name" onclick="finalResult()">Search</button>
         <div>
             <script>
-                document.write(console.log(grandTotal()));
+                document.write(console.log(finalResult()));
             </script>
         </div>
     </div>
