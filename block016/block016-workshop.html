@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
- <script src="./block016-workshop.js"></script>
+ <!-- <script src="./block016-workshop.js"></script> -->
 </head>
 <body>
     <div>
         <ul id="names-list"></ul>
         <input id="user-input">
-        <button id="add-name" onclick="refillAuthorization()">Add Name</button>
+        <script>
+            let searchName = "";
+            document.getElementById("add-name").value = searchName;
+        </script>
+        <button id="add-name" onclick="refillAuthorization(searchName)">Add Name</button>
         <div>
             <script>
-                document.write(consoel.log(grandTotal()));
+                document.write(console.log(grandTotal()));
             </script>
         </div>
     </div>
