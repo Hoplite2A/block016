@@ -64,8 +64,10 @@ let numRefill = searchName["refills"];
 let numRefillsRemaining = searchName["refillsRemaining"];
 let sub = searchName["subscription"];
 let coup = searchName["coupon"];
+let finalPrice;
 
 // Function Determining if Patient is authorized to have their prescription refilled.
+
 function refillAuthorization() {
   if (numRefillsRemaining > 0) {
     numRefillsRemaining = numRefillsRemaining - 1;
@@ -81,6 +83,7 @@ function refillAuthorization() {
 // Function Determining if Patient has a Subscription OR Coupon
 // in order to apply a 25% (subscription) OR $10 (Coupon) discount torwards the final
 // price of their prescription.
+
 function applySubCoupDiscount() {
   if (sub === true && coup === true) {
     const finalPrice = price * (1 - subDiscountValue) + coupDiscountValue;
@@ -108,6 +111,30 @@ function applyCoupDiscount() {
 }
 
 
+/* SWITCH:CASE TO OPTIMIZE PROGRAM:
+
+
+function priceCalc(sub, coup) {
+  switch (sub, coup) {
+    case (sub === true && coup === false):
+      finalPrice = (price * (1 - subDiscountValue)) && finalResult(finalPrice);
+      break;
+    case (sub === false && coup === true):
+      finalPrice = price + coupDiscountValue && finalResult(finalPrice);
+      break;
+    case (sub === true && coup === true):
+      finalPrice = ((price * (1 - subDiscountValue)) + coupDiscountValue) && finalResult(finalPrice);
+      break;
+    default:
+      (sub === false && coup === false);
+      finalPrice = price && finalResult(finalPrice);
+      break;
+  };
+};
+
+*/
+
+
 // This triggers the code that evealuates whether or not the patient has any refills remaining &&
 // what the cost will be based on if they are holding a subscription, coupon, both, or neither.
 console.log(refillAuthorization());
@@ -122,3 +149,5 @@ searchName.refillsRemaining = numRefillsRemaining;
 function finalResult(finalPrice) {
   return `${searchName.fname} ${searchName.lname} has ${searchName.refillsRemaining} refills remaining. Grand total is $${finalPrice}`;
 }
+
+console.log(finalResult());
