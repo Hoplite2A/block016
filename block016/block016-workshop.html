@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
- <!-- <script src="./block016-workshop.js"></script> -->
-</head>
-<body>
+    <!-- <script src="./block016-workshop.js"></script> -->
+  </head>
+  <body>
     <div>
-        <ul id="names-list"></ul>
-        <input id="user-input" value="Patient's First Name" onclick="this.value=''">
+      <ul id="names-list"></ul>
+      <input
+        id="user-input"
+        value="Patient's First Name"
+        onclick="this.value=''"
+      />
+      <script>
+        let searchName = "";
+        document.getElementById("add-name").value = searchName;
+      </script>
+      <button id="add-name" onclick="refillAuthorization(searchName)">Search</button>
+      <div>
         <script>
-            let searchName = "";
-            document.getElementById("add-name").value = searchName;
+          document.write(console.log(finalResult()));
         </script>
-        <button id="add-name" onclick="finalResult()">Search</button>
-        <div>
-            <script>
-                document.write(console.log(finalResult()));
-            </script>
-        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

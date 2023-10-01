@@ -1,14 +1,17 @@
+// Defining aoptions and fixed values for object property values and
+// constant variables for calculations.
 const subscriptionOptions = [false, true];
 const couponOptions = [false, true];
 const subDiscountValue = 0.25;
 const coupDiscountValue = -10;
 
+// Defined patients data/profile's key:value pairs.
 const timmy = {
   fname: "Timmy",
-  lname: "Truner",
+  lname: "Turner",
   patientsDoctor: "Dr. Pepper",
   prescription: "acetaminophen",
-  pricePerRefill: 25,
+  pricePerRefill: 100,
   refills: 3,
   refillsRemaining: 2,
   subscription: subscriptionOptions[0],
@@ -19,7 +22,7 @@ const sarah = {
   lname: "Silverstein",
   patientsDoctor: "Doc. Ock",
   prescription: "diphenhydramine",
-  pricePerRefill: 50,
+  pricePerRefill: 100,
   refills: 1,
   refillsRemaining: 2,
   subscription: subscriptionOptions[1],
@@ -30,7 +33,7 @@ const rocky = {
   lname: "Balboa",
   patientsDoctor: "Dr. Jane Foster",
   prescription: "phenylephrine",
-  pricePerRefill: 30,
+  pricePerRefill: 100,
   refills: 5,
   refillsRemaining: 4,
   subscription: subscriptionOptions[1],
@@ -43,13 +46,13 @@ const dave = {
   prescription: "idarucizumab",
   pricePerRefill: 100,
   refills: 10,
-  refillsRemaining: 10,
-  subscription: subscriptionOptions[1],
-  coupon: couponOptions[1],
+  refillsRemaining: 1,
+  subscription: subscriptionOptions[0],
+  coupon: couponOptions[0],
 };
 
 // Defining Search Value Field for testing purposes.
-let searchName = dave;
+let searchName = rocky;
 
 // Search value pulled from HTML page.
 // document.getElementById('add-name').value = searchName;
@@ -62,21 +65,18 @@ let numRefillsRemaining = searchName["refillsRemaining"];
 let sub = searchName["subscription"];
 let coup = searchName["coupon"];
 
-// Function Determining if Patient is authorized to have their
-// prescription refilled.
+// Function Determining if Patient is authorized to have their prescription refilled.
 function refillAuthorization() {
-  if (numRefillsRemaining >= 1) {
-    numRefillsRemaining -= 1;
+  if (numRefillsRemaining > 0) {
+    numRefillsRemaining = numRefillsRemaining - 1;
     return numRefillsRemaining && applySubCoupDiscount();
   } else {
-    return `${searchName.fname} ${searchName.lname} is out of refills. Patient should reach out to ${searchName.patientsDoctor} to get their prescription updated.`;
-    // alert('${searchName.fname} ${searchName.lname} is out of refills. Patient should reach out to ${patientsDoctor} to get their prescription refill updated.');
+    // return `${searchName.fname} ${searchName.lname} is out of refills. Patient should reach out to ${searchName.patientsDoctor} to get their prescription updated.`;
+    return alert(
+      "${searchName.fname} ${searchName.lname} is out of refills. Patient should reach out to ${patientsDoctor} to get their prescription refill updated."
+    );
   }
 }
-
-// Call on refillAuthorization function and update refillsRemaining variable and
-// it's corresponding object's value.
-searchName.refillsRemaining = numRefillsRemaining;
 
 // Function Determining if Patient has a Subscription OR Coupon
 // in order to apply a 25% (subscription) OR $10 (Coupon) discount torwards the final
@@ -107,11 +107,18 @@ function applyCoupDiscount() {
   }
 }
 
-// Final function that can be called on to fun the whole program.
-function finalResult(finalPrice) {
-  return `${searchName.fname} ${searchName.lname} has ${searchName.refillsRemaining} refills remaining. Their grand total is $${finalPrice}`;
-}
 
-// console.log(finalResult());
-// console.log(searchName);
+// This triggers the code that evealuates whether or not the patient has any refills remaining &&
+// what the cost will be based on if they are holding a subscription, coupon, both, or neither.
 console.log(refillAuthorization());
+
+// After having called on the refillAuthorization function and having updated the refillsRemaining
+// variable and it's corresponding object's value.
+searchName.refillsRemaining = numRefillsRemaining;
+
+// Final function that can be called on to run the whole script with the results from the
+// refillsAuthorization() function and all cascading functions and its updated variable and
+// object value.
+function finalResult(finalPrice) {
+  return `${searchName.fname} ${searchName.lname} has ${searchName.refillsRemaining} refills remaining. Grand total is $${finalPrice}`;
+}
